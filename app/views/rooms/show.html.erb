@@ -1,0 +1,17 @@
+<h3>このチャットルームにいるユーザー</h3>
+<% @userrooms.each do |u| %>
+  <p><%= u.user.name %>さん</p>
+<% end  %>
+
+<hr>
+<div id="all_message">
+  <%= render 'chats/messages' %>
+</div>
+
+<hr>
+
+<%= form_with model: @chat, remote: true do |f| %>
+  <%= f.text_field :message, placeholder: 'メッセージを入力してください', class: "message_form" %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.submit '送信' %>
+<% end  %>
